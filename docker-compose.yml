@@ -13,6 +13,10 @@ services:
       - ./next/:/next/
       - /next/node_modules
       - /next/.next
+    secrets:
+      - db_root_password
+      - db_password
+
 
   platform:
     container_name: platform

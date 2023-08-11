@@ -1,0 +1,25 @@
+{
+  "cities": [
+    {
+      "city": "Paris",
+      "country": {
+        "name": "France",
+        "identifier": "FR"
+      }
+    },
+    {
+      "city": "London",
+      "country": {
+        "name": "United Kingdom",
+        "identifier": "UK"
+      }
+    },
+    {
+      "city": "New York",
+      "country": {
+        "name": "United States",
+        "identifier": "US"
+      }
+    }
+  ]
+}
