@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image
-FROM node:19-alpine
+FROM node:18-alpine as prod
 
 ARG NODE_ENV
 
@@ -35,5 +35,13 @@ EXPOSE 3000
 
 ENTRYPOINT ["sh", "/entrypoint.sh"]
 
+RUN npm run build
 # Start the application
-CMD ["npm", "run", "dev"]
+# If the NODE_ENV is set to production, run the build command and start the application, otherwise run the dev command
+CMD ["npm", "run", "start"}]
+# CMD ["npm", "run", "dev"}"]
+
+
+FROM prod as dev
+CMD ["npm", "run", "dev"}"]
+
