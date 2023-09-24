@@ -1,11 +1,23 @@
 version: '3.9'
-
+name: ai-agent
 services:
   next:
-    container_name: next
+    container_name: agents-web
     build:
       context: ./next
       dockerfile: Dockerfile
+      args:
+        - NODE_ENV=production
+
+      tags:
+        - agents-web:latest
+        - docker.io/dinavinter959/agents-web:latest
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_VERCEL_ENV=production
+      - REWORKD_PLATFORM_ENVIRONMENT=production
+    env_file:
+      - next/.env
     ports:
       - "3000:3000"
     volumes:
@@ -15,10 +27,13 @@ services:
       - /next/.next
 
   platform:
-    container_name: platform
+    container_name: agents-platform
     build:
       context: ./platform
       target: prod
+      tags:
+        - agents-platform:latest
+        - docker.io/dinavinter959/agents-platform:latest
     ports:
       - "8000:8000"
     restart: always
@@ -37,11 +52,14 @@ services:
       - db
 
   db:
-    image: mysql:8.0
-    container_name: db
+    # image: mysql:8.0
+    container_name: agents-db
     restart: always
     build:
       context: ./db
+      tags:
+        - agents-db:latest
+        - docker.io/dinavinter959/agents-db:latest
     ports:
       - "3307:3307"
     environment:
@@ -55,10 +73,11 @@ services:
     command: [ 'mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
 
   weaviate:
+    container_name: agents-weaviate
     image: semitechnologies/weaviate:1.19.6
     restart: on-failure:0 # this should be 'no' or at least have ':1'
     ports:
-      - "8080:8080"
+      - "8000:8080"
     environment:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
