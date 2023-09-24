@@ -1,0 +1,226 @@
+apiVersion: v1
+kind: Secret
+metadata:
+ name: k8s-secret
+type: Opaque
+data:
+  # Deployment Environment:: IyBEZXBsb3ltZW50IEVudmlyb25tZW50Og==
+  NODE_ENV: ZGV2ZWxvcG1lbnQ=
+  NEXT_PUBLIC_VERCEL_ENV: JHtOT0RFX0VOVn0=
+
+  # NextJS:: IyBOZXh0SlM6
+  NEXT_PUBLIC_BACKEND_URL: aHR0cDovL2xvY2FsaG9zdDo4MDAw
+  NEXT_PUBLIC_MAX_LOOPS: MTAw
+
+  # Next Auth config:: IyBOZXh0IEF1dGggY29uZmlnOg==
+  NEXTAUTH_SECRET: cktvQU4yWmhDY0c1dEovWjJSOXp0YWhHb3MzSkFSRlcwQjdLdDU3UytJOD0=
+  NEXTAUTH_URL: aHR0cDovL2xvY2FsaG9zdDozMDAw
+
+  # Auth providers (Use if you want to get out of development mode sign-in):: IyBBdXRoIHByb3ZpZGVycyAoVXNlIGlmIHlvdSB3YW50IHRvIGdldCBvdXQgb2YgZGV2ZWxvcG1lbnQgbW9kZSBzaWduLWluKTo=
+  GOOGLE_CLIENT_ID: ODM3ODg4MjYyNDY4LW5sazUwdHVlZGdmZTVobTcwY2I5b25scHNsZ2ozc290LmFwcHMuZ29vZ2xldXNlcmNvbnRlbnQuY29t
+  GOOGLE_CLIENT_SECRET: R09DU1BYLUdzbk1fQ0tzQzdaTjhqODdQZWRmalZRenI3NGc=
+  GITHUB_CLIENT_ID: ZjFhNDg1MTRlZmNjMDc1MzBhNDQ=
+  GITHUB_CLIENT_SECRET: MzIyYTUzOGRhY2QzYjg3ODE3MDU3ODlhMzE1Y2JiYTVhMDYyY2Q5Yw==
+  DISCORD_CLIENT_SECRET: MTEzOTE1MjUyNDE2Nzg4MDcwNA==
+  DISCORD_CLIENT_ID: VUpxQ2xFZXFqVVpNX2VfYThQX0M5MFZmUEExdzFsTU8=
+
+  # Backend:: IyBCYWNrZW5kOg==
+  REWORKD_PLATFORM_ENVIRONMENT: JHtOT0RFX0VOVn0=
+  REWORKD_PLATFORM_FF_MOCK_MODE_ENABLED: ZmFsc2U=
+  REWORKD_PLATFORM_MAX_LOOPS: JHtORVhUX1BVQkxJQ19NQVhfTE9PUFN9
+  REWORKD_PLATFORM_FRONTEND_URL: aHR0cDovL2xvY2FsaG9zdDozMDAw
+  REWORKD_PLATFORM_RELOAD: dHJ1ZQ==
+  REWORKD_PLATFORM_SERP_API_KEY: ZjE0ZjFhZjE4ZWVmMDZkYmU3YjhlMWJlN2NmYzhlMTEyYWJiYmYwNg==
+  REWORKD_PLATFORM_REPLICATE_API_KEY: cjhfQTVuUEhiNGVhV0JKeGpwQ3ZLM2QwUGdGMWlxQ0U5MDAwZnZpOQ==
+  REWORKD_PLATFORM_OPENAI_API_KEY: ZXlKMGVYQWlPaUpoZEN0S1YxUWlMQ0poYkdjaU9pSlNVekkxTmlJc0ltdHBaQ0k2SWxKVVZYbFJhMXBDVVRCV1JGRXdTa05QVkdjeFRWUkpNMDB3VlhoTmVsazBVbXBOTUU5VWJFVk5hbGw2VDBSbk0wMUZTVE5PZHlKOS5leUp6WTI5d1pTSTZJbTl3Wlc1cFpDSXNJbWxoZENJNk1UWTVORGszTVRreU5Dd2laWGh3SWpveE56STJOVEEzT1RJMExDSmpiR2xsYm5SZmFXUWlPaUpFWkZsQlUzQkVibFJXU2xVMFowdHRTMHRMZW0xWVZsOGlMQ0poZFdRaU9pSkVaRmxCVTNCRWJsUldTbFUwWjB0dFMwdExlbTFZVmw4aUxDSnBjM01pT2lKb2RIUndjem92TDJacFpHMHVaWFV4TG1kcFozbGhMbU52YlM5dmFXUmpMMjl3TDNZeExqQXZORjlrZFhsM01WUkhVM2gwWTBKTmVpMUZUMXBaZEZkbklpd2ljM1ZpSWpvaWIzVk1WbVo0WVZOeWFEaEVaV3R5U0ZsdFYxSlViMlZwUzIxVWVYVk5hR0kwVDNack4ySmhXbGQxWXlJc0luTnBaQ0k2SWprd05qVXdPRGN5TkRJNU5GOUxSWEV5VDBocFgyZHpPSFE1ZDB4alRVcGtVSEJrVW01TlUxa2lMQ0pxZEdraU9pSnpkREl1Y3k1QlkySklRVVl0VW0xM0xsTlRhWGhSVjJneVowNDBWV2xaVW0xNU5HMVNXbVJ3Wmw5SUxXUmxkbmM1Um1SalkwTlJjRTB6VW5NeVNWZElRMHBVVVVVMFQxOXZPVkZsTlhseWRVRXphSGQwYlRBd1dWQm5haTA0UVhsVWVWUlpRVUU0VWpsUExVWmtRbkppVVZvdFIweFhjalpEUWtNeFMyVjZXR00yYlVOUWMxQnVaVEJ3VEZoeVVHUlJMalpXVFVWUmFqSnNhV0p3U2tKemVrNHdjSE0zWjBzeFltSkJSM0JTZFVWeE1YcFNhMGMwVjBSSFQwdDJVSEp2U2xaWGJIUmtWSGhQU2tSTGRtOTFSbE5MYkhGdGF6bFFYMVIyZVdSdGEyRlZSVEpNV0VGQkxuTmpNeUlzSW1GNmNDSTZJa1JrV1VGVGNFUnVWRlpLVlRSblMyMUxTMHQ2YlZoV1h5SjkuR05PY0N6c05JSmxSQnFuTkdOV01ONjBaLWg4UTQ0YUp1S2xSVjlxVndkZTVvYnpRWjUtTXBubEZBXzA1cTRyd3EtMXZWQlhxMXlEemRja0lJNDJxdXduWmFxQnJPTWlKRDd3MWRzb18xdV91YmJUQkFoYlJ1R0xweE9ydEVobHhJVXhRMkViT1BudFFyQnZ2eTBlekdVRUducFhwTzN1dllsLTkxdUdJVURrMHlKVHpsNzk5X1lXVnNJdG5vWjdGLUtIcXZwTlQwRlVmaE5jTG94VHdibUUtdUxHUElZMkQzZGx4eG5RZGpoTmNNWnZOMzA3UmdpOHAydkNzZjNLM1Q5aHBGZDhoWW13TVRtR3hSWnRJc2gxQTdvRTNzWllvd3BQWnFTMzlrcVI2VVN2WDJnVDAtUUpqN2NmREozOC02Z2U0WHdSUzlhQzlHMDRXR181a3dn
+  REWORKD_PLATFORM_OPENAI_API_BASE: aHR0cHM6Ly9pZHgta3ltYS10ZXN0LWJ1aXNuZXNzYXBwc3R1ZGlvLWRldi1haWNvcmVhcHAzLXNydi5jZmFwcHMudXMyMC5oYW5hLm9uZGVtYW5kLmNvbS9haQ==
+
+  # Database (Backend):: IyBEYXRhYmFzZSAoQmFja2VuZCk6
+  REWORKD_PLATFORM_DATABASE_USER: cmV3b3JrZF9wbGF0Zm9ybQ==
+  REWORKD_PLATFORM_DATABASE_PASSWORD: cmV3b3JrZF9wbGF0Zm9ybQ==
+  REWORKD_PLATFORM_DATABASE_HOST: ZGI=
+  REWORKD_PLATFORM_DATABASE_PORT: MzMwNw==
+  REWORKD_PLATFORM_DATABASE_NAME: cmV3b3JrZF9wbGF0Zm9ybQ==
+  REWORKD_PLATFORM_DATABASE_URL: bXlzcWw6Ly8ke1JFV09SS0RfUExBVEZPUk1fREFUQUJBU0VfVVNFUn06JHtSRVdPUktEX1BMQVRGT1JNX0RBVEFCQVNFX1BBU1NXT1JEfUAke1JFV09SS0RfUExBVEZPUk1fREFUQUJBU0VfSE9TVH06JHtSRVdPUktEX1BMQVRGT1JNX0RBVEFCQVNFX1BPUlR9LyR7UkVXT1JLRF9QTEFURk9STV9EQVRBQkFTRV9OQU1FfQ==
+
+  # Database (Frontend):: IyBEYXRhYmFzZSAoRnJvbnRlbmQpOg==
+  DATABASE_USER: cmV3b3JrZF9wbGF0Zm9ybQ==
+  DATABASE_PASSWORD: cmV3b3JrZF9wbGF0Zm9ybQ==
+  DATABASE_HOST: ZGI=
+  DATABASE_PORT: MzMwNw==
+  DATABASE_NAME: cmV3b3JrZF9wbGF0Zm9ybQ==
+  DATABASE_URL: bXlzcWw6Ly8ke0RBVEFCQVNFX1VTRVJ9OiR7REFUQUJBU0VfUEFTU1dPUkR9QCR7REFUQUJBU0VfSE9TVH06JHtEQVRBQkFTRV9QT1JUfS8ke0RBVEFCQVNFX05BTUV9
+
+
+###
+#---
+#   apiVersion: v1
+#   kind: Secret
+#   metadata:
+#     name: db-secret
+#   type: Opaque
+#   data:
+#     MYSQL_DATABASE: "reworkd_platform"
+#     MYSQL_USER: "reworkd_platform"
+#     MYSQL_PASSWORD: "reworkd_platform"
+#     MYSQL_ROOT_PASSWORD: "reworkd_platform"
+#     MYSQL_TCP_PORT: 3307
+
+# ---
+#   apiVersion: v1
+#   kind: Secret
+#   metadata:
+#     name: weaviate-secret
+#   type: Opaque
+#   data:
+#     QUERY_DEFAULTS_LIMIT: <Base64 Encoded Value>
+#     AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: <Base64 Encoded Value>
+
+# ---
+#   apiVersion: v1
+#   kind: Secret
+#   metadata:
+#     name: next-secret
+#   type: Opaque
+#   data:
+#     env: <Base64 Encoded .env File Content>
+
+# ---
+#   apiVersion: v1
+#   kind: Secret
+#   metadata:
+#     name: platform-secret
+#   type: Opaque
+#   data:
+#     REWORKD_PLATFORM_HOST: 0.0.0.0
+#     REWORKD_PLATFORM_DB_HOST: db
+#     REWORKD_PLATFORM_DB_PORT: "3307"
+#     REWORKD_PLATFORM_DB_USER: "reworkd_platform"
+#     REWORKD_PLATFORM_DB_PASS: "reworkd_platform"
+#     REWORKD_PLATFORM_DB_BASE: "reworkd_platform"
+
+---
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: next
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: next
+    template:
+      metadata:
+        labels:
+          app: next
+      spec:
+        containers:
+        - name: next
+          image: ./next/Dockerfile
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: next-secret
+              mountPath: /next/.env
+              subPath: env
+          envFrom:
+          - secretRef:
+              name: k8s-secret
+        volumes:
+        - name: next-secret
+          secret:
+            secretName: next-secret
+---
+  apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: platform
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: platform
+    template:
+      metadata:
+        labels:
+          app: platform
+      spec:
+        containers:
+        - name: platform
+          image: ./platform/Dockerfile
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: platform-secret
+              mountPath: /app/src/.env
+              subPath: env
+          env:
+            REWORKD_PLATFORM_HOST: 0.0.0.0
+            REWORKD_PLATFORM_DB_HOST: db
+            REWORKD_PLATFORM_DB_PORT: "3307"
+            REWORKD_PLATFORM_DB_USER: "reworkd_platform"
+            REWORKD_PLATFORM_DB_PASS: "reworkd_platform"
+            REWORKD_PLATFORM_DB_BASE: "reworkd_platform"
+        volumes:
+        - name: platform-secret
+          secret:
+            secretName: platform-secret
+
+
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: mysql:8.0
+        ports:
+          - containerPort: 3307
+        envFrom:
+          - secretRef:
+              name: db-secret
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weaviate
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: weaviate
+  template:
+    metadata:
+      labels:
+        app: weaviate
+    spec:
+      containers:
+        - name: weaviate
+          image: semitechnologies/weaviate:1.19.6
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - secretRef:
+                name: weaviate-secret
+          env:
+            QUERY_DEFAULTS_LIMIT: 25
+            AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
+            PERSISTENCE_DATA_PATH: '/var/lib/weaviate'
+            DEFAULT_VECTORIZER_MODULE: 'none'
+            CLUSTER_HOSTNAME: 'node1'
+
+
+
