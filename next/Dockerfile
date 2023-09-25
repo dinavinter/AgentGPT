@@ -29,7 +29,7 @@ COPY entrypoint.sh /
 RUN apk add --no-cache dos2unix netcat-openbsd \
     && dos2unix /entrypoint.sh
 
-
+RUN npm install -g husky
 # Expose the port the app will run on
 EXPOSE 3000
 
