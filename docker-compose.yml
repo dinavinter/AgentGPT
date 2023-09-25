@@ -13,9 +13,13 @@ services:
         - agents-web:latest
         - docker.io/dinavinter959/agents-web:latest
     environment:
-      - NODE_ENV=production
-      - NEXT_PUBLIC_VERCEL_ENV=production
-      - REWORKD_PLATFORM_ENVIRONMENT=production
+        NODE_ENV: production
+        NEXT_PUBLIC_VERCEL_ENV: production
+        REWORKD_PLATFORM_ENVIRONMENT: production
+        NEXT_PUBLIC_BACKEND_URL: http://localhost:8000
+        NEXTAUTH_URL: http://localhost:3000
+
+# Next Auth config:
     env_file:
       - next/.env
     ports:
@@ -48,12 +52,14 @@ services:
       REWORKD_PLATFORM_DB_USER: "reworkd_platform"
       REWORKD_PLATFORM_DB_PASS: "reworkd_platform"
       REWORKD_PLATFORM_DB_BASE: "reworkd_platform"
+      REWORKD_PLATFORM_ENVIRONMENT: production
+
     depends_on:
       - db
 
   db:
-    # image: mysql:8.0
-    container_name: agents-db
+    image: mysql:8.0
+    container_name: db
     restart: always
     build:
       context: ./db
@@ -77,7 +83,7 @@ services:
     image: semitechnologies/weaviate:1.19.6
     restart: on-failure:0 # this should be 'no' or at least have ':1'
     ports:
-      - "8000:8080"
+      - "8080:8080"
     environment:
       QUERY_DEFAULTS_LIMIT: 25
       AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: 'true'
