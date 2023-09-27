@@ -25,12 +25,18 @@ export const serverSchema = z.object({
         // VERCEL_URL doesn't include `https` so it cant be validated as a URL
         process.env.VERCEL ? z.string() : z.string().url()
     ),
+    NEXTAUTH_TYPE: z.enum(["local", "external"]),
     GOOGLE_CLIENT_ID: z.string().min(1).trim().optional(),
     GOOGLE_CLIENT_SECRET: z.string().min(1).trim().optional(),
     GITHUB_CLIENT_ID: z.string().min(1).trim().optional(),
     GITHUB_CLIENT_SECRET: z.string().min(1).trim().optional(),
     DISCORD_CLIENT_ID: z.string().min(1).trim().optional(),
     DISCORD_CLIENT_SECRET: z.string().min(1).trim().optional(),
+    DYNIDP_CLIENT_ID: z.string().min(1).trim().optional(),
+    DYNIDP_CLIENT_SECRET: z.string().min(1).trim().optional(),
+    GIGYA_DISCOVERY_URL: z.string().min(1).trim().optional(),
+    GIGYA_CLIENT_ID: z.string().min(1).trim().optional(),
+    GIGYA_CLIENT_SECRET: z.string().min(1).trim().optional()
 });
 
 /**
@@ -43,6 +49,7 @@ export const serverEnv = {
     NODE_ENV: process.env.NODE_ENV,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    NEXTAUTH_TYPE: process.env.NEXTAUTH_TYPE,
 
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
@@ -50,6 +57,13 @@ export const serverEnv = {
     GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
     DISCORD_CLIENT_ID: process.env.DISCORD_CLIENT_ID,
     DISCORD_CLIENT_SECRET: process.env.DISCORD_CLIENT_SECRET,
+
+    DYNIDP_CLIENT_ID: process.env.DYNIDP_CLIENT_ID,
+    DYNIDP_CLIENT_SECRET: process.env.DYNIDP_CLIENT_SECRET,
+
+    GIGYA_DISCOVERY_URL: process.env.GIGYA_DISCOVERY_URL,
+    GIGYA_CLIENT_ID: process.env.GIGYA_CLIENT_ID,
+    GIGYA_CLIENT_SECRET: process.env.GIGYA_CLIENT_SECRET
 };
 
 /**

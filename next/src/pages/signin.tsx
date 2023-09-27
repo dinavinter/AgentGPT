@@ -9,7 +9,7 @@ import type { ClientSafeProvider } from "next-auth/react";
 import { getProviders, signIn, useSession } from "next-auth/react";
 import type { LiteralUnion } from "next-auth/react/types";
 import React, { useState } from "react";
-import { FaDiscord, FaGithub, FaGoogle } from "react-icons/fa";
+import { FaDiscord, FaGithub, FaGoogle, FaLockOpen } from "react-icons/fa";
 
 import FadeIn from "../components/motions/FadeIn";
 import { authOptions } from "../server/auth/auth";
@@ -125,6 +125,12 @@ const providerButtonDetails: { [key: string]: ButtonDetail } = {
   github: {
     id: "github",
     icon: <FaGithub className="mr-2" />,
+    color: "bg-gray-800 hover:bg-gray-900 text-white",
+  },
+
+  dynidp: {
+    id: "dynidp",
+    icon: <FaLockOpen className="mr-2" />,
     color: "bg-gray-800 hover:bg-gray-900 text-white",
   },
 };

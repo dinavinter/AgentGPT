@@ -3,7 +3,7 @@ import type { Session } from "next-auth";
 import { signIn, signOut, useSession } from "next-auth/react";
 import { useEffect } from "react";
 
-type Provider = "google" | "github" | "discord";
+type Provider = "google" | "github" | "discord" | "gigya";
 
 interface Auth {
   signIn: (provider?: Provider) => Promise<void>;
@@ -34,7 +34,7 @@ export function useAuth(
   }, [protectedRoute, isAllowed, status, session, push]);
 
   const handleSignIn = async () => {
-    await signIn();
+    await signIn("gigya");
   };
 
   const handleSignOut = async () => {

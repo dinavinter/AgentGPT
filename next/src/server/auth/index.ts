@@ -62,7 +62,7 @@ export const authOptions = (
   res: NextApiResponse | ServerResponse
 ) => {
   const options =
-    env.NEXT_PUBLIC_VERCEL_ENV === "development"
+    env.NEXTAUTH_TYPE === "local"
       ? devOptions(commonOptions.adapter, req, res)
       : prodOptions;
 
