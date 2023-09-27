@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-cd /next
+cd /app
 dos2unix wait-for-db.sh
 
 # copy .env file if not exists
