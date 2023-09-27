@@ -19,6 +19,9 @@ const config = {
       Object.entries(process.env).filter(([key]) => key.includes('NEXT_PUBLIC_')),
     ),
   },
+
+
+
   /* If trying out the experimental appDir, comment the i18n config out
    * @see https://github.com/vercel/next.js/issues/41980 */
   i18n: nextI18NextConfig.i18n,
