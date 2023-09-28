@@ -13,7 +13,7 @@ def create_engine() -> AsyncEngine:
 
     :return: SQLAlchemy engine instance.
     """
-    if settings.environment == "development":
+    if settings.db_ssl_mode == "disabled":
         return create_async_engine(
             str(settings.db_url),
             echo=settings.db_echo,

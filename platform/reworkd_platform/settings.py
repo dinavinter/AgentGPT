@@ -82,6 +82,7 @@ class Settings(BaseSettings):
     db_base: str = "reworkd_platform"
     db_echo: bool = False
     db_ca_path: Optional[str] = None
+    db_ssl_mode: Optional[str] = "disabled"
 
     # Variables for Weaviate db.
     vector_db_url: Optional[str] = None
