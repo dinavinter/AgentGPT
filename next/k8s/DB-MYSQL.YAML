@@ -1,0 +1,169 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: agent-chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+        sidecar.istio.io/inject: 'false'
+    spec:
+      volumes:
+        - name: mysqldb
+          persistentVolumeClaim:
+            claimName: db-data
+      containers:
+        - name: mysql
+          image: agentlyio/agent-db:latest
+          ports:
+            - containerPort: 3307
+              protocol: TCP
+              name: db
+          args: [ '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
+          envFrom:
+            - secretRef:
+                name: db-secret
+          env:
+            - name: MYSQL_DATABASE
+              value: reworkd_platform
+            - name: MYSQL_USER
+              value: reworkd_platform
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: MYSQL_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
+              value: reworkd_platform
+          resources: {}
+          volumeMounts:
+            - name: mysqldb
+              mountPath: /var/lib/mysql
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      START_CODE
+      {
+          "apiVersion": "v1",
+          "kind": "Service",
+          "metadata": {
+              "annotations": {},
+              "labels": {
+                  "app": "nginx"
+              },
+              "name": "nginx-deployment",
+              "namespace": "default"
+          },
+          "spec": {
+              "ports": [
+                  {
+                      "port": 80,
+                      "protocol": "TCP",
+                      "targetPort": 80
+                  }
+              ],
+              "selector": {
+                  "app": "nginx"
+              },
+              "type": "ClusterIP"
+          }
+      }
+      spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mysql
+        sidecar.istio.io/inject: 'true'
+    spec:
+      volumes:
+        - name: mysqldb
+          persistentVolumeClaim:
+            claimName: db-data
+      containers:
+        - name: mysql
+          image: agentlyio/agent-db:latest
+          ports:
+            - containerPort: 3307
+              protocol: TCP
+          envFrom:
+            - secretRef:
+                name: db-secret
+          env:
+            - name: MYSQL_DATABASE
+              value: reworkd_platform
+            - name: MYSQL_USER
+              value: reworkd_platform
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: MYSQL_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
+              value: reworkd_platform
+          resources: {}
+          volumeMounts:
+            - name: mysqldb
+              mountPath: /var/lib/mysql
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
+status:
+  observedGeneration: 1
+  replicas: 1
+  updatedReplicas: 1
+  unavailableReplicas: 1
+  conditions:
+    - type: Available
+      status: 'False'
+      lastUpdateTime: '2023-09-26T18:45:21Z'
+      lastTransitionTime: '2023-09-26T18:45:21Z'
+      reason: MinimumReplicasUnavailable
+      message: Deployment does not have minimum availability.
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2023-09-26T18:45:21Z'
+      lastTransitionTime: '2023-09-26T18:45:21Z'
+      reason: ReplicaSetUpdated
+      message: ReplicaSet "mysql-6bb89b958c" is progressing.
