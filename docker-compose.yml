@@ -22,7 +22,7 @@ services:
       - next/.env
 
     depends_on:
-      - db
+      - agentgpt_db
   platform:
     container_name: platform
     build:
@@ -43,10 +43,10 @@ services:
       REWORKD_PLATFORM_DB_PASS: "reworkd_platform"
       REWORKD_PLATFORM_DB_BASE: "reworkd_platform"
       REWORKD_PLATFORM_DB_CA_PATH: "db/db_data/ca.pem"
-      DATABASE_URL: "mysql://reworkd_platform:reworkd_platform@db:3307/reworkd_platform"
+      DATABASE_URL: "mysql://reworkd_platform:reworkd_platform@agentgpt_db:3307/reworkd_platform"
       NEXTAUTH_SECRET: rKoAN2ZhCcG5tJ/Z2R9ztahGos3JARFW0B7Kt57S+I8=
       NEXTAUTH_URL: http://localhost:3000
-
+      SQLLite: file:./db.sqlite
 
     depends_on:
       - agentgpt_db
