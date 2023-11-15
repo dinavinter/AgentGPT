@@ -10,12 +10,6 @@ RUN apt-get update && apt-get install -y \
 
 RUN pip install poetry==1.4.2
 
-RUN  apt-get update
-RUN  apt-get install --reinstall -y build-essential
-RUN pip3 install --upgrade pip setuptools wheel
-RUN pip3 install poetry==1.4.2
-RUN pip3 wheel --use-pep517 "jpype1 (==1.4.1)"
-
 # Configuring poetry
 RUN poetry config virtualenvs.create false
 
