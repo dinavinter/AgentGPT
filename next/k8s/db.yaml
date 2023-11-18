@@ -1,0 +1,103 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-secret
+  namespace: agent-chat
+  labels:
+    db: agent-chat-mysql
+
+type: Opaque
+data:
+  MYSQL_DATABASE: cmV3b3JrZF9wbGF0Zm9ybQ==
+  MYSQL_USER: cmV3b3JrZF9wbGF0Zm9ybQ==
+  MYSQL_PASSWORD: cmV3b3JrZF9wbGF0Zm9ybQ==
+  MYSQL_ROOT_PASSWORD: cmV3b3JrZF9wbGF0Zm9ybQ==
+
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: db-data
+  namespace: agent-chat
+  labels:
+    app: mysql
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  namespace: agent-chat
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+        sidecar.istio.io/inject: 'false'
+    spec:
+      volumes:
+        - name: mysqldb
+          persistentVolumeClaim:
+            claimName: db-data
+      containers:
+        - name: mysql
+          image: docker.io/dinavinter959/agent-db:latest
+          ports:
+            - containerPort: 3307
+              protocol: TCP
+              name: db
+          args: [ '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci' ]
+          envFrom:
+            - secretRef:
+                name: db-secret
+          env:
+            - name: MYSQL_DATABASE
+              value: reworkd_platform
+            - name: MYSQL_USER
+              value: reworkd_platform
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: MYSQL_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
+              value: reworkd_platform
+          resources: {}
+          volumeMounts:
+            - name: mysqldb
+              mountPath: /var/lib/mysql
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql
+  namespace: agent-chat
+  labels:
+    app: mysql
+spec:
+  ports:
+    - name: mysql
+      protocol: TCP
+      port: 3307
+      targetPort: 3307
+  selector:
+    app: mysql

@@ -53,3 +53,8 @@ yarn-error.log*
 /volumes/
 schema.prismae
 *.sql
+
+
+.env*.local
+*.env
+.secrets/
