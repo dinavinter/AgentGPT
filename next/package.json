@@ -7,12 +7,15 @@
   },
   "scripts": {
     "build": "next build --no-lint",
-    "dev": "next dev",
+    "dev": "next dev --experimental-https",
     "postinstall": "prisma generate",
     "lint": "cross-env SKIP_ENV_VALIDATION=1 next lint --fix",
     "start": "next start",
     "prepare": "cd .. && husky install next/.husky",
-    "test": "cross-env SKIP_ENV_VALIDATION=1 jest"
+    "test": "cross-env SKIP_ENV_VALIDATION=1 jest",
+    "prisma": "npx prisma migrate deploy --schema=./prisma/schema.prisma && npx prisma db push"
+
+
   },
   "dependencies": {
     "@headlessui/react": "^1.7.14",

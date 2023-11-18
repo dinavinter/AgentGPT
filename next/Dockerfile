@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image
-FROM node:19-alpine
+FROM node:18-alpine
 
 ARG NODE_ENV
 
@@ -15,7 +15,7 @@ WORKDIR /next
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN yarn install
 
 # Copy the wait-for-db.sh script
 COPY wait-for-db.sh /usr/local/bin/wait-for-db.sh

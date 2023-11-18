@@ -67,7 +67,7 @@ export const clientSchema = z.object({
     NEXT_PUBLIC_FF_MOCK_MODE_ENABLED: stringToBoolean().default(false),
     NEXT_PUBLIC_FF_SID_ENABLED: stringToBoolean().default(false),
     NEXT_PUBLIC_VERCEL_URL: z.string().default("http://localhost:3000"),
-    NEXT_PUBLIC_BACKEND_URL: z.string().url().default("http://localhost:8000"),
+    NEXT_PUBLIC_BACKEND_URL: z.string().url().default("https://local.pyzlo.in:8000"),
     NEXT_PUBLIC_MAX_LOOPS: z.coerce.number().default(25),
     NEXT_PUBLIC_PUSHER_APP_KEY: z.string().optional(),
 });

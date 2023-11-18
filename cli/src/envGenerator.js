@@ -7,7 +7,7 @@ export const generateEnv = (envValues) => {
   let dbPort = isDockerCompose ? 3307 : 3306;
   let platformUrl = isDockerCompose
     ? "http://host.docker.internal:8000"
-    : "http://localhost:8000";
+    : "https://local.pyzlo.in:8000";
 
   const envDefinition = getEnvDefinition(
     envValues,
@@ -27,7 +27,7 @@ const getEnvDefinition = (envValues, isDockerCompose, dbPort, platformUrl) => {
       NEXT_PUBLIC_VERCEL_ENV: "${NODE_ENV}",
     },
     NextJS: {
-      NEXT_PUBLIC_BACKEND_URL: "http://localhost:8000",
+      NEXT_PUBLIC_BACKEND_URL: "https://local.pyzlo.in:8000",
       NEXT_PUBLIC_MAX_LOOPS: 100,
     },
     "Next Auth config": {

@@ -47,10 +47,7 @@ const SignIn = ({ providers }: { providers: Provider }) => {
             </div>
           </FadeIn>
           <FadeIn duration={1.5} delay={0.4} initialY={50}>
-            {providers.credentials && <InsecureSignin />}
-            {details.map((detail) => (
-              <ProviderSignInButton key={detail.id} detail={detail} />
-            ))}
+            <InsecureSignin />
           </FadeIn>
         </div>
       </div>
@@ -147,6 +144,6 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }
 
   return {
-    props: { providers: (await getProviders()) ?? {} },
+    props: { providers:  {} },
   };
 }
